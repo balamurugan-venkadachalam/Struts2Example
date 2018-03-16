@@ -20,6 +20,7 @@
 </s:if>
 
 <h1><s:property value="getText('action.welcome.username')"/></h1>
+<h1><s:text name="action.welcome.username"/></h1>
 
 <p><a href="">Hello Bala ${session.valid }</a></p>
 

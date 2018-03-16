@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts.register.exceptions.SecurityBreachException;
 import org.apache.struts.register.model.Person;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -71,5 +72,26 @@ public class Register extends ActionSupport implements SessionAware, ParameterNa
 	public Map<String, Object> getSession() {
 		return session;
 	}
+	
+	
+
+	public void throwException() throws Exception {
+
+		throw new Exception("Exception thrown from throwException");
+
+	}
+
+	public void throwNullPointerException() throws NullPointerException {
+
+		throw new NullPointerException("Null Pointer Exception thrown from "
+				+ Register.class.toString());
+	}
+
+	public void throwSecurityException() throws SecurityBreachException {
+
+		throw new SecurityBreachException(
+				"Security breach exception thrown from throwSecurityException");
+	}
+
 
 }

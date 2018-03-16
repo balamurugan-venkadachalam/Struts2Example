@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="global"></constant>
+
+	<package name="basicstruts2" extends="struts-default">
+
+<!-- 		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types> -->
+		
+		
+		<!-- If no class attribute is specified the framework will assume success 
+			and render the result index.jsp -->
+		<!-- If no name value for the result node is specified the success value 
+			is the default -->
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+
+
+
+		<action name="HelloWorld" class="org.apache.struts.helloworld.action.HelloWorld">
+			<result >/tile_template.jsp</result>
+		</action>
+
+		<!-- If the URL is hello.action then call the execute method of class HelloWorldAction. 
+			If the result returned by the execute method is success render the HelloWorld.jsp -->
+		<action name="hello"
+			class="org.apache.struts.helloworld.action.HelloWorldAction" method="execute">
+			<result name="success">/HelloWorld.jsp</result>
+		</action>
+
+		<action name="register" class="org.apache.struts.register.action.Register"
+			method="execute">
+			<result name="success">/thankyou.jsp</result>
+		</action>
+
+		<!-- for logger interceptor see: https://struts.apache.org/core-developers/logging-interceptor.html -->
+		<!-- for timer interceptor see https://struts.apache.org/core-developers/timer-interceptor.html -->
+		<action name="registerForm" class="org.apache.struts.register.action.Register"
+			method="init">
+			<interceptor-ref name="timer" />
+			<interceptor-ref name="logger" />
+			<interceptor-ref name="defaultStack">
+				<param name="exception.logEnabled">true</param>
+				<param name="exception.logLevel">ERROR</param>
+			</interceptor-ref>
+			<param name="params.excludeParams">dojo..*,^struts..*,^session..*,^request..*,^application..*,^servlet(Request|Response)..*,parameters...*</param>
+			<result name="success">/register.jsp</result>
+		</action>
+
+		<action name="registerAction" class="org.apache.struts.register.action.UserRegister"
+			method="execute">
+
+			<result name="success">/usr_reg_success.jsp</result>
+		</action>
+
+		<action name="formLoadAction" method="initializeFormFields"
+			class="org.apache.struts.register.action.UserRegister">
+			<result name="input">/registeruser.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,3 +1,3 @@
 Struts 2 demo
 =============
-Exception handling demo
+1) Exception handling demo
